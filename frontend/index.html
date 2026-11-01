@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+<div id="toasts"></div>
+<div id="modal-root"></div>
+
+<!-- FULL-SCREEN LOCKOUT (blocked / expired subscription) -->
+<div id="lock-screen" class="fullscreen" hidden>
+  <div class="login-box" style="text-align:center">
+    <div style="font-size:56px">🔒</div>
+    <h1 style="color:var(--red);margin:10px 0">Access Locked</h1>
+    <p id="lock-msg" style="font-size:18px;color:var(--t);line-height:1.5">Subscription Expired / Contact Administrator to Renew</p>
+    <button class="btn ghost" style="margin-top:22px" data-act="backToLogin">Back to sign in</button>
+  </div>
+</div>
+
+<!-- SIGN IN -->
+<div id="login-screen" class="fullscreen">
+  <div class="login-box">
+    <div style="text-align:center;margin-bottom:24px">
+      <div class="logo-icon" id="login-logo">🏢</div>
+      <h1 id="login-title">Business Portal</h1>
+      <p class="muted" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Sign in to continue</p>
+    </div>
+    <div id="login-error" class="alert error" hidden></div>
+    <div id="tenant-fields">
+      <label class="fl"><span>Business ID</span><input id="lg-tenant" placeholder="e.g. INA-482" autocapitalize="characters"></label>
+      <label class="fl"><span>Username or Email</span><input id="lg-user" placeholder="your login name" autocapitalize="off"></label>
+    </div>
+    <label class="fl"><span>Password</span><input id="lg-pass" type="password" placeholder="Password"></label>
+    <button class="btn gold" style="width:100%;padding:12px;margin-top:6px" data-act="doLogin" id="lg-btn">Sign In →</button>
+    <p style="text-align:center;margin-top:16px"><a href="#" data-act="toggleSA" id="sa-link" class="muted" style="font-size:12px">Platform administrator? Sign in here</a></p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" hidden>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-icon" id="brand-icon">🏢</div><div><div class="brand-name" id="brand-name">Business</div><div class="brand-sub" id="brand-sub">Portal</div></div></div>
+    <nav id="nav"></nav>
+    <div class="side-foot">
+      <div class="who"><div class="avatar" id="avatar">U</div><div><div id="who-name" style="font-size:12px;font-weight:700"></div><div id="who-role" class="muted" style="font-size:10px"></div></div></div>
+      <button class="btn ghost sm" style="width:100%;margin-top:8px" data-act="logout">Sign out</button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" data-act="closeSide"></div>
+  <div class="main-area">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:10px"><button class="burger" data-act="openSide">☰</button><span id="page-title" class="page-title">Dashboard</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span id="lic-badge"></span><button class="round" data-act="theme" id="theme-btn" title="Dark / light">🌙</button></div>
+    </header>
+    <main id="main" class="content"></main>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/pages/dashboard.js"></script>
+<script src="js/pages/pos.js"></script>
+<script src="js/pages/orders.js"></script>
+<script src="js/pages/inventory.js"></script>
+<script src="js/pages/customers.js"></script>
+<script src="js/pages/shipments.js"></script>
+<script src="js/pages/finance.js"></script>
+<script src="js/pages/reports.js"></script>
+<script src="js/pages/team.js"></script>
+<script src="js/pages/settings.js"></script>
+<script src="js/pages/superadmin.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
